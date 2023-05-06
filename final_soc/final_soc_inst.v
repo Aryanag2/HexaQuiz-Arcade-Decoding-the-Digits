@@ -1,10 +1,13 @@
 	final_soc u0 (
 		.accumulate_clk_export          (<connected-to-accumulate_clk_export>),          //          accumulate_clk.export
 		.clk_clk                        (<connected-to-clk_clk>),                        //                     clk.clk
+		.fsm_export_export              (<connected-to-fsm_export_export>),              //              fsm_export.export
+		.fsms_fsm                       (<connected-to-fsms_fsm>),                       //                    fsms.fsm
 		.hex_digits_export              (<connected-to-hex_digits_export>),              //              hex_digits.export
 		.key_external_connection_export (<connected-to-key_external_connection_export>), // key_external_connection.export
 		.keycode_export                 (<connected-to-keycode_export>),                 //                 keycode.export
 		.leds_export                    (<connected-to-leds_export>),                    //                    leds.export
+		.rem_time_clk_export            (<connected-to-rem_time_clk_export>),            //            rem_time_clk.export
 		.reset_reset_n                  (<connected-to-reset_reset_n>),                  //                   reset.reset_n
 		.reset_clk_export               (<connected-to-reset_clk_export>),               //               reset_clk.export
 		.sdram_clk_clk                  (<connected-to-sdram_clk_clk>),                  //               sdram_clk.clk
@@ -22,6 +25,8 @@
 		.spi0_SCLK                      (<connected-to-spi0_SCLK>),                      //                        .SCLK
 		.spi0_SS_n                      (<connected-to-spi0_SS_n>),                      //                        .SS_n
 		.sw_clk_export                  (<connected-to-sw_clk_export>),                  //                  sw_clk.export
+		.timer_mins                     (<connected-to-timer_mins>),                     //                   timer.mins
+		.timer_secs                     (<connected-to-timer_secs>),                     //                        .secs
 		.usb_gpx_export                 (<connected-to-usb_gpx_export>),                 //                 usb_gpx.export
 		.usb_irq_export                 (<connected-to-usb_irq_export>),                 //                 usb_irq.export
 		.usb_rst_export                 (<connected-to-usb_rst_export>),                 //                 usb_rst.export

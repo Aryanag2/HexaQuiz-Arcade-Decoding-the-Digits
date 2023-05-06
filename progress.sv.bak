@@ -1,0 +1,33 @@
+ module progress(input logic CLK, 
+						input logic [5:0] minutes, seconds,
+						)
+ 
+ 
+ 
+ 
+ if ((DrawX == RB && (DrawY == UB || DrawY == DB)) || (Draw DrawX == LB && (DrawY == UB || DrawY == DB)) || (DrawY == UB && (DrawX == LB || DrawY == RB) || (DrawY == DB && (DrawX == LB || DrawY == RB))
+ begin
+	red = 'black'
+	green = 'black'
+	blue = 'black'
+ end
+ 
+ 
+ case (34):
+	if ( DrawX < UB && DrawX > LB+5*case)
+		red = 'green'
+		green = 'green'
+		blue = 'green'
+	else
+		red = 'background'
+		green = 'background'
+		blue = 'background'
+		
+		
+		
+// interface call
+
+ else if (DrawY  >= RB && DrawY < LB && DrawX > LB && DRAWX < UB)
+	interface_red = red;
+	interface blue = blue
+	

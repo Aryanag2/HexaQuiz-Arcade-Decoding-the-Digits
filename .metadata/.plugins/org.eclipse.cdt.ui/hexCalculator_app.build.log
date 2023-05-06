@@ -1,0 +1,6 @@
+19:16:23 **** Clean-only build of configuration Nios II for project hexCalculator_app ****
+make clean 
+[hexCalculator_app clean complete]
+
+19:16:24 Build Finished (took 286ms)
+

@@ -44,7 +44,9 @@ module vga_text_avl_interface (
 	
 	// Exported Conduit (mapped to VGA port - make sure you export in Platform Designer)
 	output logic [3:0]  red, green, blue,	// VGA color channels (mapped to output pins in top-level)
-	output logic hs, vs						// VGA HS/VS
+	output logic hs, vs, 						// VGA HS/VS
+	input logic [5:0] mins, secs,
+	input logic [2:0] fsm	
 );
 
 logic [31:0] LOCAL_REG       [`NUM_REGS]; // Registers
@@ -52,8 +54,8 @@ logic [31:0] palette       [8];
 //put other local variables here
 ////logic hs, vs, pixel_clk, blank, sync;
 
-logic [7:0] from_data;
-logic [10:0] from_addr;
+logic [7:0] from_data, min_data, colon_data, ten_sec_data, sec_data;
+logic [10:0] from_addr, min_addr, ten_sec_addr, sec_addr;
 logic [7:0] Xgrid;
 logic [6:0] Ygrid;
 logic [7:0] vram_code;
@@ -63,6 +65,18 @@ logic [31:0] word_addr;
 logic [31:0] register;
 logic [31:0] temp, temp2;
 logic [11:0] test;
+logic [3:0] menu_red;
+logic [3:0] menu_blue;
+logic [3:0] menu_green;
+logic [3:0] game_red;
+logic [3:0] game_blue;
+logic [3:0] game_green;
+logic [3:0] bar_red;
+logic [3:0] bar_blue;
+logic [3:0] bar_green;
+//logic [5:0] mins;
+//logic [5:0] secs;
+//logic rems;
 //
 //vga vga_controller ( .Clk(CLK), .Reset(RESET), .hs(hs), .vs(vs), .pixel_clk(pixel_clk), .blank(blank), .sync(sync), .DrawX(DrawX), .DrawY(DrawY));
 //from font_rom (.addr(from_addr), .data(from_data));
@@ -71,6 +85,45 @@ logic [11:0] test;
 //Declare submodules..e.g. VGA controller, ROMS, etc
 vga_controller vga_controller (.Clk(CLK), .Reset(RESET), .hs(hs), .vs(vs), .pixel_clk(pixel_clk), .blank(blank), .sync(sync), .DrawX(DrawX), .DrawY(DrawY));
 font_rom fm(.addr(from_addr), .data(from_data));	
+
+font_rom minute(.addr(16*(48+mins)+DrawY), .data(min_data));	
+
+font_rom colon(.addr(16*58+DrawY), .data(colon_data));	
+
+font_rom ten_sec(.addr(16*(48+secs/10)+DrawY), .data(ten_sec_data));	
+
+font_rom second(.addr(16*(48+secs%10)+DrawY), .data(sec_data));	
+
+ progress bar (.CLK(pixel_clk), 
+					  .minutes(mins), 
+					  .seconds(secs),
+					  .DrawX(DrawX), 
+					  .DrawY(DrawY),
+					  .red(bar_red), 
+					  .green(bar_green), 
+					  .blue(bar_blue));
+
+menu_example menu(
+.vga_clk(pixel_clk),
+	.DrawX(DrawX),
+	.DrawY(DrawY),
+	.blank(blank),
+	.red(menu_red), 
+	.green(menu_green), 
+	.blue(menu_blue)
+);
+
+game_example game(
+.vga_clk(pixel_clk),
+	.DrawX(DrawX),
+	.DrawY(DrawY),
+	.blank(blank),
+	.red(game_red), 
+	.green(game_green), 
+	.blue(game_blue)
+);
+
+//countdown t0(.clk(CLK), .reset(RESET), .minutes(mins), .seconds(secs), .rem(rems);
 
 ram ram0(.address_a(AVL_ADDR), 
 			.address_b(register),
@@ -148,73 +201,277 @@ always_ff @(posedge pixel_clk)
 begin
 	if (blank == 1'b1)									
 	begin
-		if (from_data[7 - DrawX[2:0]] == 1'b1) 			
+		if (fsm == 3'd1 )
 		begin
-			if (letter[15] == 1'b0)
+			red 	<=	menu_red;
+			green	<= menu_green;
+			blue 	<=	menu_blue;
+		end
+		else if (fsm == 3'd2)
+		begin
+			red 	<=	menu_red;
+			green	<= menu_green;
+			blue 	<=	menu_blue;
+		end
+		else if (fsm == 3'd3 || fsm == 3'd4 || fsm == 3'd5)
+		begin
+			red 	<=	game_red;
+			green	<= game_green;
+			blue 	<=	game_blue;
+			if (DrawX >= 48 && DrawX < 56 && DrawY < 16)
+			begin
+				if (min_data[7 - DrawX[2:0]] == 1'b1)
 				begin
-					if (letter[4] == 1'b0) begin
+					red 	<=	palette[6][24:21];
+					green	<= palette[6][20:17];
+					blue 	<=	palette[6][16:13];
+				end
+				else
+				begin
+					red 	<=	palette[7][12:9];
+					green <= palette[7][8:5];
+					blue 	<=	palette[7][4:1];
+				end
+			end
+			else if (DrawX < 21 && DrawX > 9 && DrawY < 421 && DrawY > 59)
+			begin
+					red 	<=	bar_red;
+					green <= bar_green;
+					blue 	<=	bar_blue;
+			end
+			else if(DrawX >= 56 && DrawX < 64 && DrawY < 16)
+			begin
+				if (colon_data[7 - DrawX[2:0]] == 1'b1)
+				begin
+					red 	<=	palette[6][24:21];
+					green	<= palette[6][20:17];
+					blue 	<=	palette[6][16:13];
+				end
+				else
+				begin
+					red 	<=	palette[7][12:9];
+					green <= palette[7][8:5];
+					blue 	<=	palette[7][4:1];
+				end		
+			end
+			else if (DrawX >= 64 && DrawX < 72 && DrawY < 16)
+			begin 
+				if (ten_sec_data[7 - DrawX[2:0]] == 1'b1)
+				begin
+					red 	<=	palette[6][24:21];
+					green	<= palette[6][20:17];
+					blue 	<=	palette[6][16:13];
+				end
+				else
+				begin
+					red 	<=	palette[7][12:9];
+					green <= palette[7][8:5];
+					blue 	<=	palette[7][4:1];
+				end		
+			end
+			else if (DrawX >= 72 && DrawX < 80 && DrawY < 16)
+			begin 
+				if (sec_data[7 - DrawX[2:0]] == 1'b1)
+				begin
+					red 	<=	palette[6][24:21];
+					green	<= palette[6][20:17];
+					blue 	<=	palette[6][16:13];
+
+				end
+				else
+				begin
+					red 	<=	palette[7][12:9];
+					green <= palette[7][8:5];
+					blue 	<=	palette[7][4:1];
+				end
+			end
+			else if (DrawX  < 48 && DrawY < 16 && DrawX > 1)
+			begin
+				if (from_data[7 - DrawX[2:0]] == 1'b1) 			
+				begin
+					red 	<=	palette[6][24:21];
+					green	<= palette[6][20:17];
+					blue 	<=	palette[6][16:13];
+				end
+				else if (from_data[7 - DrawX[2:0]] == 1'b0) 			
+				begin	
+					red 	<=	palette[7][12:9];
+					green <= palette[7][8:5];
+					blue 	<=	palette[7][4:1];
+				end
+			end
+			else if (DrawY  >= 160 && DrawY < 176 && DrawX < 400 && DrawX > 30)
+			begin
+				if (from_data[7 - DrawX[2:0]] == 1'b1) 			
+				begin
+					red 	<=	palette[6][24:21];
+					green	<= palette[6][20:17];
+					blue 	<=	palette[6][16:13];
+				end
+				else if (from_data[7 - DrawX[2:0]] == 1'b0) 			
+				begin	
+					red 	<=	palette[7][12:9];
+					green <= palette[7][8:5];
+					blue 	<=	palette[7][4:1];
+				end
+			end
+			else if (DrawY  >= 224 && DrawY < 240 && DrawX > 30)
+			begin
+				if (from_data[7 - DrawX[2:0]] == 1'b1) 			
+				begin
+					red 	<=	palette[6][24:21];
+					green	<= palette[6][20:17];
+					blue 	<=	palette[6][16:13];
+				end
+				else if (from_data[7 - DrawX[2:0]] == 1'b0) 			
+				begin	
+					red 	<=	palette[7][12:9];
+					green <= palette[7][8:5];
+					blue 	<=	palette[7][4:1];
+				end
+			end
+			else if (DrawY  >= 240 && DrawY < 256 && DrawX > 30)
+			begin
+				if (from_data[7 - DrawX[2:0]] == 1'b1) 			
+				begin
+					red 	<=	palette[6][24:21];
+					green	<= palette[6][20:17];
+					blue 	<=	palette[6][16:13];
+				end
+				else if (from_data[7 - DrawX[2:0]] == 1'b0) 			
+				begin	
+					red 	<=	palette[7][12:9];
+					green <= palette[7][8:5];
+					blue 	<=	palette[7][4:1];
+				end
+			end
+			else if (DrawY  >= 272 && DrawY < 288 && DrawX > 30)
+			begin
+				if (from_data[7 - DrawX[2:0]] == 1'b1) 			
+				begin
+					red 	<=	palette[6][24:21];
+					green	<= palette[6][20:17];
+					blue 	<=	palette[6][16:13];
+				end
+				else if (from_data[7 - DrawX[2:0]] == 1'b0) 			
+				begin	
+					red 	<=	palette[7][12:9];
+					green <= palette[7][8:5];
+					blue 	<=	palette[7][4:1];
+				end
+			end
+		end
+		else if (fsm == 3'd6)
+		begin
+			red 	<=	game_red;
+			green	<= game_green;
+			blue 	<=	game_blue;
+			if (DrawX  >= 40 && DrawX < 520 && DrawY >= 176 && DrawY < 352)
+			begin
+				if (from_data[7 - DrawX[2:0]] == 1'b1)
+				begin
+					red 	<=	palette[6][24:21];
+					green	<= palette[6][20:17];
+					blue 	<=	palette[6][16:13];
+				end
+				else
+				begin
+					red 	<=	palette[7][12:9];
+					green <= palette[7][8:5];
+					blue 	<=	palette[7][4:1];
+				end
+			end
+//			if (DrawX  >= 40 && DrawX < 464 && DrawY >= 176 $$ DrawY < 288)
+//			begin
+//				if (from_data[7 - DrawX[2:0]] == 1'b1) 			
+//				begin
+//					red 	<=	palette[6][24:21];
+//					green	<= palette[6][20:17];
+//					blue 	<=	palette[6][16:13];
+//				end
+//				if (from_data[7 - DrawX[2:0]] == 1'b0) 			
+//				begin	
+//					red 	<=	palette[7][12:9];
+//					green <= palette[7][8:5];
+//					blue 	<=	palette[7][4:1];
+//				end
+//			end
+		end
+		else
+		begin
+			if (from_data[7 - DrawX[2:0]] == 1'b1) 			
+			begin
+				if (letter[15] == 1'b0)
+				begin
+					if (letter[4] == 1'b0) 
+					begin
 						red 	<=	palette[letter[7:5]][12:9];
 						green	<= palette[letter[7:5]][8:5];
 						blue 	<=	palette[letter[7:5]][4:1];
 					end
-					else begin
+					else 
+					begin
 						red 	<=	palette[letter[7:5]][24:21];
 						green <= palette[letter[7:5]][20:17];
 						blue 	<=	palette[letter[7:5]][16:13];
 					end
 				end
-			else
+				else
 				begin
-					if (letter[0] == 1'b0) begin
+					if (letter[0] == 1'b0) 
+					begin
 						red 	<=	palette[letter[3:1]][12:9];
 						green	<= palette[letter[3:1]][8:5];
 						blue 	<=	palette[letter[3:1]][4:1];
 					end
-					else begin
+					else 
+					begin
 						red 	<=	palette[letter[3:1]][24:21];
 						green <= palette[letter[3:1]][20:17];
 						blue 	<=	palette[letter[3:1]][16:13];
 					end
 				end
 			end
-		else if (from_data[7 - DrawX[2:0]] == 1'b0) 			
+			else if (from_data[7 - DrawX[2:0]] == 1'b0) 			
 			begin	
-			if (letter[15] == 1'b0)
+				if (letter[15] == 1'b0)
 				begin
-					if (letter[0] == 1'b0) begin
+					if (letter[0] == 1'b0) 
+					begin
 						red 	<=	palette[letter[3:1]][12:9];
 						green	<= palette[letter[3:1]][8:5];
 						blue 	<=	palette[letter[3:1]][4:1];
 					end
-					else begin
+					else 
+					begin
 						red 	<=	palette[letter[3:1]][24:21];
 						green <= palette[letter[3:1]][20:17];
 						blue 	<=	palette[letter[3:1]][16:13];
 					end
 				end
-			else
+				else
 				begin
-					if (letter[4] == 1'b0) begin
+					if (letter[4] == 1'b0) 
+					begin
 						red 	<=	palette[letter[7:5]][12:9];
 						green	<= palette[letter[7:5]][8:5];
 						blue 	<=	palette[letter[7:5]][4:1];
 					end
-					else begin
+					else 
+					begin
 						red 	<=	palette[letter[7:5]][24:21];
 						green <= palette[letter[7:5]][20:17];
 						blue 	<=	palette[letter[7:5]][16:13];
 					end
 				end
 			end
-		end
-		
-
-		else begin
-			red 	<=	4'h0000;
-			green <=	4'h0000;
-			blue 	<=	4'h0000;
-		end
+		end		
+	end
+	else 
+	begin
+		red 	<=	4'h0000;
+		green <=	4'h0000;
+		blue 	<=	4'h0000;
+	end
 end
-
-
 endmodule

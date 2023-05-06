@@ -1,0 +1,23 @@
+module countdown_5min(
+  input clk, // 50MHz clock input
+  output reg [2:0] minutes, // 3-bit minutes output
+  output reg [5:0] seconds // 6-bit seconds output
+);
+
+localparam COUNT_MAX = 5 * 60 * 50_000_000; // Maximum count value (5 minutes * 60 seconds * 50MHz)
+
+reg [23:0] count = COUNT_MAX; // 24-bit countdown counter, initialized to maximum value
+
+always @(posedge clk) begin
+  if (count == 0) // Reset count when it reaches 0
+    count <= COUNT_MAX;
+  else
+    count <= count - 1; // Decrement count on each clock cycle
+end
+
+always @(*) begin
+  minutes = count / (60 * 50_000_000); // Divide count by number of seconds per minute and clock frequency to get minutes
+  seconds = (count % (60 * 50_000_000)) / 50_000_000; // Take the remainder of count divided by number of seconds per minute and clock frequency, and divide by clock frequency to get seconds
+end
+
+endmodule

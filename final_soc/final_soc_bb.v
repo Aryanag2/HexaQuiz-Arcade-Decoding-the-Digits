@@ -2,10 +2,13 @@
 module final_soc (
 	accumulate_clk_export,
 	clk_clk,
+	fsm_export_export,
+	fsms_fsm,
 	hex_digits_export,
 	key_external_connection_export,
 	keycode_export,
 	leds_export,
+	rem_time_clk_export,
 	reset_reset_n,
 	reset_clk_export,
 	sdram_clk_clk,
@@ -23,6 +26,8 @@ module final_soc (
 	spi0_SCLK,
 	spi0_SS_n,
 	sw_clk_export,
+	timer_mins,
+	timer_secs,
 	usb_gpx_export,
 	usb_irq_export,
 	usb_rst_export,
@@ -34,10 +39,13 @@ module final_soc (
 
 	input		accumulate_clk_export;
 	input		clk_clk;
+	input	[2:0]	fsm_export_export;
+	input	[2:0]	fsms_fsm;
 	output	[15:0]	hex_digits_export;
 	input	[1:0]	key_external_connection_export;
 	output	[7:0]	keycode_export;
 	output	[13:0]	leds_export;
+	input		rem_time_clk_export;
 	input		reset_reset_n;
 	input		reset_clk_export;
 	output		sdram_clk_clk;
@@ -55,6 +63,8 @@ module final_soc (
 	output		spi0_SCLK;
 	output		spi0_SS_n;
 	input	[9:0]	sw_clk_export;
+	input	[5:0]	timer_mins;
+	input	[5:0]	timer_secs;
 	input		usb_gpx_export;
 	input		usb_irq_export;
 	output		usb_rst_export;

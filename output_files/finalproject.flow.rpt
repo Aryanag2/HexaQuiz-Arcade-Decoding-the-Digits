@@ -1,5 +1,5 @@
 Flow report for finalproject
-Thu Apr 27 23:22:12 2023
+Fri May 05 19:31:33 2023
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,20 +40,20 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Thu Apr 27 23:22:12 2023       ;
+; Flow Status                        ; Successful - Fri May 05 19:31:33 2023       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; finalproject                                ;
-; Top-level Entity Name              ; lab7                                        ;
+; Top-level Entity Name              ; HexaQuiz                                    ;
 ; Family                             ; MAX 10                                      ;
 ; Device                             ; 10M50DAF484C7G                              ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 5,470 / 49,760 ( 11 % )                     ;
-;     Total combinational functions  ; 4,799 / 49,760 ( 10 % )                     ;
-;     Dedicated logic registers      ; 2,827 / 49,760 ( 6 % )                      ;
-; Total registers                    ; 2896                                        ;
+; Total logic elements               ; 8,853 / 49,760 ( 18 % )                     ;
+;     Total combinational functions  ; 8,128 / 49,760 ( 16 % )                     ;
+;     Dedicated logic registers      ; 2,945 / 49,760 ( 6 % )                      ;
+; Total registers                    ; 3014                                        ;
 ; Total pins                         ; 141 / 360 ( 39 % )                          ;
 ; Total virtual pins                 ; 0                                           ;
-; Total memory bits                  ; 49,792 / 1,677,312 ( 3 % )                  ;
+; Total memory bits                  ; 1,278,592 / 1,677,312 ( 76 % )              ;
 ; Embedded Multiplier 9-bit elements ; 0 / 288 ( 0 % )                             ;
 ; Total PLLs                         ; 1 / 4 ( 25 % )                              ;
 ; UFM blocks                         ; 0 / 1 ( 0 % )                               ;
@@ -66,7 +66,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/27/2023 23:20:19 ;
+; Start date & time ; 05/05/2023 19:28:55 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; finalproject        ;
 +-------------------+---------------------+
@@ -77,7 +77,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------+-------------------------------------------------------------+---------------+-------------------+----------------+
 ; Assignment Name                     ; Value                                                       ; Default Value ; Entity Name       ; Section Id     ;
 +-------------------------------------+-------------------------------------------------------------+---------------+-------------------+----------------+
-; COMPILER_SIGNATURE_ID               ; 161526879906991.168265561913280                             ; --            ; --                ; --             ;
+; COMPILER_SIGNATURE_ID               ; 161526879906991.168333293511948                             ; --            ; --                ; --             ;
 ; EDA_OUTPUT_DATA_FORMAT              ; Systemverilog Hdl                                           ; --            ; --                ; eda_simulation ;
 ; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (SystemVerilog)                             ; <None>        ; --                ; --             ;
 ; EDA_TIME_SCALE                      ; 1 ps                                                        ; --            ; --                ; eda_simulation ;
@@ -91,20 +91,20 @@ refer to the applicable agreement for further details.
 ; OUTPUT_IO_TIMING_NEAR_END_VMEAS     ; Half Vccio                                                  ; --            ; --                ; --             ;
 ; OUTPUT_IO_TIMING_NEAR_END_VMEAS     ; Half Vccio                                                  ; --            ; --                ; --             ;
 ; PARTITION_COLOR                     ; -- (Not supported for targeted family)                      ; --            ; DE10_LITE_Default ; Top            ;
-; PARTITION_COLOR                     ; -- (Not supported for targeted family)                      ; --            ; lab7              ; Top            ;
+; PARTITION_COLOR                     ; -- (Not supported for targeted family)                      ; --            ; HexaQuiz          ; Top            ;
 ; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family)                      ; --            ; DE10_LITE_Default ; Top            ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family)                      ; --            ; lab7              ; Top            ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family)                      ; --            ; HexaQuiz          ; Top            ;
 ; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family)                      ; --            ; DE10_LITE_Default ; Top            ;
-; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family)                      ; --            ; lab7              ; Top            ;
+; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family)                      ; --            ; HexaQuiz          ; Top            ;
 ; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                                         ; --            ; --                ; --             ;
 ; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW                       ; --            ; --                ; --             ;
 ; PROJECT_OUTPUT_DIRECTORY            ; output_files                                                ; --            ; --                ; --             ;
 ; SLD_FILE                            ; final_soc/synthesis/final_soc.regmap                        ; --            ; --                ; --             ;
 ; SLD_FILE                            ; final_soc/synthesis/final_soc.debuginfo                     ; --            ; --                ; --             ;
-; SLD_INFO                            ; QSYS_NAME final_soc HAS_SOPCINFO 1 GENERATION_ID 1682650364 ; --            ; final_soc         ; --             ;
+; SLD_INFO                            ; QSYS_NAME final_soc HAS_SOPCINFO 1 GENERATION_ID 1683331387 ; --            ; final_soc         ; --             ;
 ; SOPCINFO_FILE                       ; final_soc/synthesis/../../final_soc.sopcinfo                ; --            ; --                ; --             ;
 ; SYNTHESIS_ONLY_QIP                  ; On                                                          ; --            ; --                ; --             ;
-; TOP_LEVEL_ENTITY                    ; lab7                                                        ; finalproject  ; --                ; --             ;
+; TOP_LEVEL_ENTITY                    ; HexaQuiz                                                    ; finalproject  ; --                ; --             ;
 +-------------------------------------+-------------------------------------------------------------+---------------+-------------------+----------------+
 
 
@@ -113,12 +113,12 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:01:03     ; 1.0                     ; 5068 MB             ; 00:01:29                           ;
-; Fitter               ; 00:00:27     ; 1.9                     ; 6715 MB             ; 00:00:59                           ;
-; Assembler            ; 00:00:04     ; 1.0                     ; 4707 MB             ; 00:00:04                           ;
-; Timing Analyzer      ; 00:00:07     ; 3.6                     ; 5051 MB             ; 00:00:15                           ;
-; EDA Netlist Writer   ; 00:00:03     ; 1.0                     ; 4749 MB             ; 00:00:03                           ;
-; Total                ; 00:01:44     ; --                      ; --                  ; 00:02:50                           ;
+; Analysis & Synthesis ; 00:01:31     ; 1.0                     ; 5204 MB             ; 00:01:54                           ;
+; Fitter               ; 00:00:37     ; 2.0                     ; 6739 MB             ; 00:01:29                           ;
+; Assembler            ; 00:00:04     ; 1.0                     ; 4745 MB             ; 00:00:04                           ;
+; Timing Analyzer      ; 00:00:08     ; 4.0                     ; 5119 MB             ; 00:00:22                           ;
+; EDA Netlist Writer   ; 00:00:04     ; 1.0                     ; 4827 MB             ; 00:00:04                           ;
+; Total                ; 00:02:24     ; --                      ; --                  ; 00:03:53                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

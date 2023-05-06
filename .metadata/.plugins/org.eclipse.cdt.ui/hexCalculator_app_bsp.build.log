@@ -1,0 +1,6 @@
+19:16:21 **** Clean-only build of configuration Nios II for project hexCalculator_app_bsp ****
+make clean 
+[BSP clean complete]
+
+19:16:22 Build Finished (took 357ms)
+

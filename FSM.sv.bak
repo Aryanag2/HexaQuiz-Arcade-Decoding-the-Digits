@@ -1,0 +1,69 @@
+// Function declarations for the game levels
+void easyLevel();
+void mediumLevel();
+void hardLevel();
+
+// Define the states
+typedef enum {
+  MENU_STATE,
+  EASY_LEVEL_STATE,
+  MEDIUM_LEVEL_STATE,
+  HARD_LEVEL_STATE,
+  LEADERBOARD_STATE
+} GameState;
+
+// Function pointer type for game level functions
+typedef void (*GameLevelFunc)();
+
+// Array of function pointers for each game level
+GameLevelFunc levelFuncs[] = {
+  NULL,         // No function for MENU_STATE
+  easyLevel,
+  mediumLevel,
+  hardLevel,
+  NULL          // No function for LEADERBOARD_STATE
+};
+
+// Main game loop
+while (1) {
+  // State machine logic
+  switch (currentState) {
+    case MENU_STATE:
+      // Handle menu logic
+      // Display menu options
+      // Wait for user input to transition to the next state
+      if (userInput == /* some condition */) {
+        currentState = EASY_LEVEL_STATE;
+      } else if (userInput == /* some condition */) {
+        currentState = MEDIUM_LEVEL_STATE;
+      } else if (userInput == /* some condition */) {
+        currentState = HARD_LEVEL_STATE;
+      } else if (userInput == /* some condition */) {
+        currentState = LEADERBOARD_STATE;
+      }
+      break;
+
+    case EASY_LEVEL_STATE:
+    case MEDIUM_LEVEL_STATE:
+    case HARD_LEVEL_STATE:
+      // Call the corresponding game level function
+      levelFuncs[currentState]();
+      
+      // Wait for game completion or user input to transition to the next state
+      if (gameCompleted) {
+        currentState = LEADERBOARD_STATE;
+      } else if (userInput == /* some condition */) {
+        currentState = MENU_STATE;
+      }
+      break;
+
+    case LEADERBOARD_STATE:
+      // Handle leaderboard logic
+      // Display leaderboard information
+      // Wait for user input to transition to the next state
+      if (userInput == /* some condition */) {
+        currentState = MENU_STATE;
+      }
+      break;
+  }
+}

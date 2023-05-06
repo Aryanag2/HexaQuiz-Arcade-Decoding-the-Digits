@@ -1,0 +1,22 @@
+{
+	"system" : {
+		"platform" : "windows64",
+		"os_name" : "Windows 10",
+		"os_version" : "10.0"
+	},
+	"error" : {
+		"executable" : "quartus",
+		"comment" : "not_applicable",
+		"error_message" : "Access Violation at 0X000000005A5CF354",
+		"source_file" : "unknown",
+		"line" : "0",
+		"stack_trace" : "\t 0x5a5cf353: QtGui4 + 0x3df353 (?widget@QMdiSubWindow@@QEBAPEAVQWidget@@XZ + 0x3)\n\t0x7fff5fe247b1: SYS_QUI + 0x247b1 (?close_all_in_list@QUI_FRAME_WND@@IEAA_NV?$QList@PEAVQMdiSubWindow@@@@PEAVQMdiSubWindow@@U_GUID@@@Z + 0x111)\n\t0x7fff5fe249c1: SYS_QUI + 0x249c1 (?close_all_windows@QUI_FRAME_WND@@QEAA_NU_GUID@@@Z + 0xc1)\n\t0x7fff5fe245a1: SYS_QUI + 0x245a1 (?closeEvent@QUI_FRAME_WND@@MEAAXPEAVQCloseEvent@@@Z + 0x1e1)\n\t 0x5a250be1: QtGui4 + 0x60be1 (?event@QWidget@@MEAA_NPEAVQEvent@@@Z + 0x521)\n\t 0x5a589d30: QtGui4 + 0x399d30 (?event@QMainWindow@@MEAA_NPEAVQEvent@@@Z + 0x280)\n\t 0x5a212e95: QtGui4 + 0x22e95 (?notify_helper@QApplicationPrivate@@QEAA_NPEAVQObject@@PEAVQEvent@@@Z + 0xf5)\n\t 0x5a212b2f: QtGui4 + 0x22b2f (?notify@QApplication@@UEAA_NPEAVQObject@@PEAVQEvent@@@Z + 0x17bf)\n\t 0x5a00d92b: QtCore4 + 0x10d92b (?notifyInternal@QCoreApplication@@AEAA_NPEAVQObject@@PEAVQEvent@@@Z + 0x7b)\n\t 0x5a24e258: QtGui4 + 0x5e258 (?close_helper@QWidgetPrivate@@QEAA_NW4CloseMode@1@@Z + 0xa8)\n\t 0x5a277956: QtGui4 + 0x87956 (?winMouseButtonUp@QApplication@@SAXXZ + 0x1006)\n\t0x7fff9b2f1cab: USER32 + 0x11cab (CallWindowProcW + 0x43b)\n\t0x7fff9b2f17fb: USER32 + 0x117fb (EnumChildWindows + 0x19b)\n\t0x7fff9b304c6c: USER32 + 0x24c6c (IsIconic + 0x1bc)\n\t0x7fff9d507aa3: ntdll + 0xa7aa3 (KiUserCallbackDispatcher + 0x23)\n\t0x7fff9abc1433: win32u + 0x1433 (NtUserMessageCall + 0x13)\n\t0x7fff9b2ee807: USER32 + 0xe807 (GetWindowTextW + 0x7f7)\n\t0x7fff9b2edfce: USER32 + 0xdfce (GetDpiForSystem + 0x35e)\n\t0x7fff9798a20f: uxtheme + 0xa20f (Ordinal119 + 0x87f)\n\t0x7fff97987131: uxtheme + 0x7131 (Ordinal137 + 0x3c1)\n\t0x7fff9799032d: uxtheme + 0x1032d (ThemeInitApiHook + 0x131d)\n\t0x7fff9798fc90: uxtheme + 0xfc90 (ThemeInitApiHook + 0xc80)\n\t0x7fff9b2ee5d4: USER32 + 0xe5d4 (GetWindowTextW + 0x5c4)\n\t 0x5a6ebbf7: QtGui4 + 0x4fbbf7 (?widgetDestroyed@QInputContext@@UEAAXPEAVQWidget@@@Z + 0x307)\n\t 0x5a277915: QtGui4 + 0x87915 (?winMouseButtonUp@QApplication@@SAXXZ + 0xfc5)\n\t0x7fff9b2f1cab: USER32 + 0x11cab (CallWindowProcW + 0x43b)\n\t0x7fff9b2f17fb: USER32 + 0x117fb (EnumChildWindows + 0x19b)\n\t0x7fff9b304c6c: USER32 + 0x24c6c (IsIconic + 0x1bc)\n\t0x7fff9d507aa3: ntdll + 0xa7aa3 (KiUserCallbackDispatcher + 0x23)\n\t0x7fff9abc13b3: win32u + 0x13b3 (NtUserPeekMessage + 0x13)\n\t0x7fff9b2f9f6e: USER32 + 0x19f6e (PeekMessageW + 0x1ce)\n\t0x7fff9b2f9ed9: USER32 + 0x19ed9 (PeekMessageW + 0x139)\n\t 0x5a032663: QtCore4 + 0x132663 (?processEvents@QEventDispatcherWin32@@UEAA_NV?$QFlags@W4ProcessEventsFlag@QEventLoop@@@@@Z + 0x243)\n\t 0x5a270eb4: QtGui4 + 0x80eb4 (?openPopup@QApplicationPrivate@@QEAAXPEAVQWidget@@@Z + 0x204)\n\t 0x5a00a88b: QtCore4 + 0x10a88b (?exec@QEventLoop@@QEAAHV?$QFlags@W4ProcessEventsFlag@QEventLoop@@@@@Z + 0x22b)\n\t 0x5a00ce6f: QtCore4 + 0x10ce6f (?exec@QCoreApplication@@SAHXZ + 0xdf)\n\t0x7ff6aee2197b: quartus + 0x197b (?qgq_main@@YAHHPEAPEBD@Z + 0x7b)\n\t0x7fff7c1f2e98: CCL_MSG + 0x12e98 (?msg_main_thread@@YAPEAXPEAX@Z + 0x18)\n\t0x7fff7c1f467e: CCL_MSG + 0x1467e (?msg_thread_wrapper@@YAPEAXP6APEAXPEAX@Z0@Z + 0x6e)\n\t0x7fff83bf6660: ccl_mem + 0x16660 (?mem_thread_wrapper@@YAPEAXP6APEAXPEAX@Z0@Z + 0x70)\n\t0x7fff7c1f2761: CCL_MSG + 0x12761 (?msg_exe_main@@YAHHPEAPEBDP6AHH0@Z@Z + 0xa1)\n\t0x7ff6aee224e7: quartus + 0x24e7 (WinMain + 0x127)\n\t0x7ff6aee21e58: quartus + 0x1e58 (__tmainCRTStartup + 0x148)\n\t0x7fff9c78558f: KERNEL32 + 0x1558f (BaseThreadInitThunk + 0xf)\n\t0x7fff9d46485a: ntdll + 0x485a (RtlUserThreadStart + 0x2a)\n",
+		"subsystem" : "unknown"
+	},
+	"quartus" : {
+		"quartus_bits" : "64",
+		"version" : "18.1.0",
+		"build" : "625",
+		"edition" : "Lite Edition"
+	}
+}

@@ -2,10 +2,13 @@
 		port (
 			accumulate_clk_export          : in    std_logic                     := 'X';             -- export
 			clk_clk                        : in    std_logic                     := 'X';             -- clk
+			fsm_export_export              : in    std_logic_vector(2 downto 0)  := (others => 'X'); -- export
+			fsms_fsm                       : in    std_logic_vector(2 downto 0)  := (others => 'X'); -- fsm
 			hex_digits_export              : out   std_logic_vector(15 downto 0);                    -- export
 			key_external_connection_export : in    std_logic_vector(1 downto 0)  := (others => 'X'); -- export
 			keycode_export                 : out   std_logic_vector(7 downto 0);                     -- export
 			leds_export                    : out   std_logic_vector(13 downto 0);                    -- export
+			rem_time_clk_export            : in    std_logic                     := 'X';             -- export
 			reset_reset_n                  : in    std_logic                     := 'X';             -- reset_n
 			reset_clk_export               : in    std_logic                     := 'X';             -- export
 			sdram_clk_clk                  : out   std_logic;                                        -- clk
@@ -23,6 +26,8 @@
 			spi0_SCLK                      : out   std_logic;                                        -- SCLK
 			spi0_SS_n                      : out   std_logic;                                        -- SS_n
 			sw_clk_export                  : in    std_logic_vector(9 downto 0)  := (others => 'X'); -- export
+			timer_mins                     : in    std_logic_vector(5 downto 0)  := (others => 'X'); -- mins
+			timer_secs                     : in    std_logic_vector(5 downto 0)  := (others => 'X'); -- secs
 			usb_gpx_export                 : in    std_logic                     := 'X';             -- export
 			usb_irq_export                 : in    std_logic                     := 'X';             -- export
 			usb_rst_export                 : out   std_logic;                                        -- export

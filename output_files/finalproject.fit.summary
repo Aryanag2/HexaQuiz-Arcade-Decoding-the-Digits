@@ -1,17 +1,17 @@
-Fitter Status : Successful - Thu Apr 27 23:21:53 2023
+Fitter Status : Successful - Fri May 05 19:31:09 2023
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : finalproject
-Top-level Entity Name : lab7
+Top-level Entity Name : HexaQuiz
 Family : MAX 10
 Device : 10M50DAF484C7G
 Timing Models : Final
-Total logic elements : 5,470 / 49,760 ( 11 % )
-    Total combinational functions : 4,799 / 49,760 ( 10 % )
-    Dedicated logic registers : 2,827 / 49,760 ( 6 % )
-Total registers : 2896
+Total logic elements : 8,853 / 49,760 ( 18 % )
+    Total combinational functions : 8,128 / 49,760 ( 16 % )
+    Dedicated logic registers : 2,945 / 49,760 ( 6 % )
+Total registers : 3014
 Total pins : 141 / 360 ( 39 % )
 Total virtual pins : 0
-Total memory bits : 49,792 / 1,677,312 ( 3 % )
+Total memory bits : 1,278,592 / 1,677,312 ( 76 % )
 Embedded Multiplier 9-bit elements : 0 / 288 ( 0 % )
 Total PLLs : 1 / 4 ( 25 % )
 UFM blocks : 0 / 1 ( 0 % )

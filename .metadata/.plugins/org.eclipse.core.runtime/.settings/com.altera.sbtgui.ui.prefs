@@ -1,4 +1,4 @@
 eclipse.preferences.version=1
-newSoftwareExampleWizardPage.defaultLocation=C\:\\Users\\aryan\\Downloads\\finalproject\\software\\finalproject
-newSoftwareExampleWizardPage.sopcinfoFile=C\:\\Users\\aryan\\Downloads\\finalproject\\final_soc.sopcinfo
-newSoftwareExampleWizardPage2.newBspLocation=C\:\\Users\\aryan\\Downloads\\finalproject\\software\\finalproject_bsp
+newSoftwareExampleWizardPage.defaultLocation=C\:\\Users\\aryan\\Documents\\ECE385\\finalproject\\software\\final_app
+newSoftwareExampleWizardPage.sopcinfoFile=C\:\\Users\\aryan\\Documents\\ECE385\\finalproject\\final_soc.sopcinfo
+newSoftwareExampleWizardPage2.newBspLocation=C\:\\Users\\aryan\\Documents\\ECE385\\finalproject\\software\\final_app_bsp
