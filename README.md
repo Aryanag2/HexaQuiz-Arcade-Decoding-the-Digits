@@ -48,7 +48,5 @@ To play HexaQuiz Arcade: Decoding the Digit, you will need an FPGA device with s
 4. Follow the on-screen instructions to select the game mode and input your answers using the FPGA switches.
 5. Enjoy playing HexaQuiz Arcade and challenge yourself to achieve high scores!
 
-## License
 
-This project is licensed under the [MIT License](LICENSE).
 
